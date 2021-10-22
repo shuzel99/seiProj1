@@ -7,7 +7,7 @@ The player is an instacart-esque shopper. The game board has a supermarket backd
 The game will be made using HTML, CSS, Vanilla JS, and whimsical. 
 
 ## Wireframes
-
+![Proj1 Wireframe](https://user-images.githubusercontent.com/92189229/138510996-2c7369ab-1794-4576-bff7-4377c05b3550.PNG)
 
 ## MVP Goals
 Render the grocery cart 
