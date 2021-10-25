@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    padding-top: 1em;
+    text-align: center;
+    background-color: aliceblue;
+    background-size: cover;
+    background-repeat: space;
+    font-family: 'Abel', sans-serif;
+}
+
+h1, h2{
+    font-family: 'Abel', sans-serif;
+
+}
+canvas {
+    height: 100%;
+    width: 70%;
+    /* object-fit: fill; */
+    background-image: url(https://i.postimg.cc/c4NNTLNd/supermarket-4.jpg);
+    background-color: wheat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+   
+
+}
