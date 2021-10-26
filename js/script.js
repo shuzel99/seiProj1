@@ -13,6 +13,8 @@ function startGame(){
 
 // // 2d context allows drawing on top of canvas
 const ctx = game.getContext('2d')
+// canvas.width = window.innerWidth
+// canvas.height = window.innerHeight
 
 class Shopping{
     constructor(x, y, color, width, height){
@@ -63,18 +65,30 @@ const movementHandler = (e) => {
         //keycode 38 is the up arrow moves cart up
         case (38):
             cart.y -= 10
+            if (cart.y <= 0) {
+                cart.y = 0
+            }
             break
         //moves cart left
         case (37):
             cart.x -= 10 
+            if (cart.x < 0) {
+                cart.x = 0 
+            }
             break
         //  moves cart down
         case (40):
             cart.y += 10
+            if (cart.y + cart.height >= game.height){
+                cart.y = game.height - cart.height
+            }
             break
         // moves cart right
         case (39):
             cart.x += 10
+            if (cart.x + cart.width >= game.width){
+                cart.x = game.width - cart.width
+            }
             break
     }
 
@@ -82,7 +96,6 @@ const movementHandler = (e) => {
 
 const gameLoop = () => {
     ctx.clearRect(0, 0, game.width, game.height)
-    // moveDisplay.innerText = `X: ${player.x}\nY: ${player.y}`
     if (cart.alive) {
         cart.render()
         apple.render()
@@ -95,10 +108,20 @@ const gameLoop = () => {
     }
    
 }
- 
-
 let stop = () => {clearInterval(gameInterval)}
 
 document.addEventListener('keydown', movementHandler)
 
 let gameInterval = setInterval(gameLoop, 70)
+
+//collision detection btwn cart and fruits.
+// function collisionDetection() {
+
+// }
+// const detectHit = (thing) => {
+//     if (cart.x < thing.x + thing.width &&
+//         cart.x + cart.width > thing.x &&
+//         cart.y < thing.y + thing.height &&
+//         cart.y + thing.height > thing.y
+// )}
+ 
