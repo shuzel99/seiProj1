@@ -1,5 +1,7 @@
 const game = document.getElementById('canvas')
 
+//movement tracker allows items to move
+const moveDisplay = document.getElementById('movement')
 
 
 function startGame(){
@@ -34,7 +36,7 @@ class Shopping{
 //     this.width = width
 //     this.height = height
 //     this.alive - true
-//     this.render = function(){
+//     this.render = function (){
 //         ctx.fillStyle = this.color
 //         ctx.fillRect(this.x, this.y, this.width, this.height)
 //     }
@@ -48,7 +50,6 @@ let eggplant = new Shopping(160, 1, 'purple', 40, 20)
 let coconut = new Shopping(220, 1, 'brown', 20, 20)
 let lemon = new Shopping(260, 1, 'yellow', 20, 20)
 
-// console.log("this is the player", cart)
 cart.render()
 apple.render()
 watermelon.render()
@@ -56,6 +57,48 @@ orange.render()
 eggplant.render()
 coconut.render()
 lemon.render()
-// function playersToFront(){
-//     myGameArea.clear()
-// }
+
+const movementHandler = (e) => {
+    switch (e.keyCode) { 
+        //keycode 38 is the up arrow moves cart up
+        case (38):
+            cart.y -= 10
+            break
+        //moves cart left
+        case (37):
+            cart.x -= 10 
+            break
+        //  moves cart down
+        case (40):
+            cart.y += 10
+            break
+        // moves cart right
+        case (39):
+            cart.x += 10
+            break
+    }
+
+}
+
+const gameLoop = () => {
+    ctx.clearRect(0, 0, game.width, game.height)
+    // moveDisplay.innerText = `X: ${player.x}\nY: ${player.y}`
+    if (cart.alive) {
+        cart.render()
+        apple.render()
+        watermelon.render()
+        orange.render()
+        eggplant.render()
+        coconut.render()
+        lemon.render()
+
+    }
+   
+}
+ 
+
+let stop = () => {clearInterval(gameInterval)}
+
+document.addEventListener('keydown', movementHandler)
+
+let gameInterval = setInterval(gameLoop, 70)
