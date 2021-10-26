@@ -26,9 +26,19 @@ class Shopping{
         this.alive = true
     }
     render = function(){
-        ctx.fillStyle = this.color
+        if (this.alive === true){
+            ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.width, this.height)
+        }
+        // else{
+        //     console.log("maybe nothing")
+        // }
+        
     }
+//     remove = function(){
+//         ctx.clearRect(0, 0, this.width, this.height)
+//         console.log("remove called!!")
+//     }
 }
 
 // function Shopping(x, y, color, width, height){
@@ -52,13 +62,13 @@ let eggplant = new Shopping(160, 1, 'purple', 40, 20)
 let coconut = new Shopping(220, 1, 'brown', 20, 20)
 let lemon = new Shopping(260, 1, 'yellow', 20, 20)
 
-cart.render()
-apple.render()
-watermelon.render()
-orange.render()
-eggplant.render()
-coconut.render()
-lemon.render()
+// cart.render()
+// apple.render()
+// watermelon.render()
+// orange.render()
+// eggplant.render()
+// coconut.render()
+// lemon.render()
 
 const movementHandler = (e) => {
     switch (e.keyCode) { 
@@ -91,6 +101,7 @@ const movementHandler = (e) => {
             }
             break
     }
+    detectHit()
 
 }
 
@@ -108,6 +119,25 @@ const gameLoop = () => {
     }
    
 }
+const detectHit = () => {
+    if (
+        cart.x < apple.x + apple.width &&
+        cart.x + cart.width > apple.x && 
+        cart.y < apple.y + apple.height &&
+        cart.y + cart.height >= apple.y
+    ){
+        apple.alive = false
+        // apple.remove()
+        console.log("Collision Detected")
+    }
+} 
+//create array of fruits
+//iterate over fruits in detect hit
+
+
+
+
+
 let stop = () => {clearInterval(gameInterval)}
 
 document.addEventListener('keydown', movementHandler)
