@@ -41,26 +41,38 @@ class Shopping{
 //     }
 }
 
-// function Shopping(x, y, color, width, height){
-//     this.x = x 
-//     this.y = y
-//     this.color = color
-//     this.width = width
-//     this.height = height
-//     this.alive - true
-//     this.render = function (){
-//         ctx.fillStyle = this.color
-//         ctx.fillRect(this.x, this.y, this.width, this.height)
-//     }
-// }
+class Player{
+    constructor(x, y, color, width, height){
+        this.x = x
+        this.y = y
+        this.color = color
+        this.height = height
+        this.width = width
+        this.alive = true
+    }
+    render = function(){
+        if (this.alive === true){
+            ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+        }
+}
+}
+
 //create parts on canvas then render them
-let cart = new Shopping(115, 100, 'lightgrey', 70, 40)
+let cart = new Player(115, 100, 'lightgrey', 70, 40)
 let apple = new Shopping(20, 1, 'red', 20, 20)
 let watermelon = new Shopping(60, 1, 'green', 40, 20)
 let orange = new Shopping(120, 1, 'orange', 20, 20)
 let eggplant = new Shopping(160, 1, 'purple', 40, 20)
 let coconut = new Shopping(220, 1, 'brown', 20, 20)
 let lemon = new Shopping(260, 1, 'yellow', 20, 20)
+
+fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon]
+
+
+
+
+
 
 // cart.render()
 // apple.render()
@@ -120,17 +132,37 @@ const gameLoop = () => {
    
 }
 const detectHit = () => {
-    if (
-        cart.x < apple.x + apple.width &&
-        cart.x + cart.width > apple.x && 
-        cart.y < apple.y + apple.height &&
-        cart.y + cart.height >= apple.y
+    for (let i = 0; i < fruitCollection.length; i++)
+    // console.log(fruitCollection[i])
+    if  (
+        cart.x < fruitCollection[i].x + fruitCollection[i].width &&
+        cart.x + cart.width > fruitCollection[i].x && 
+        cart.y < fruitCollection[i].y + fruitCollection[i].height &&
+        cart.y + cart.height >= fruitCollection[i].y
     ){
-        apple.alive = false
+        fruitCollection[i].alive = false
         // apple.remove()
         console.log("Collision Detected")
     }
-} 
+}
+
+//set up points system
+//interpolate points into html via points variable in js
+//grab random fruitCollection item
+//check function 
+
+// const detectHit = () => {
+//     if (
+//         cart.x < apple.x + apple.width &&
+//         cart.x + cart.width > apple.x && 
+//         cart.y < apple.y + apple.height &&
+//         cart.y + cart.height >= apple.y
+//     ){
+//         apple.alive = false
+//         // apple.remove()
+//         console.log("Collision Detected")
+//     }
+// } 
 //create array of fruits
 //iterate over fruits in detect hit
 
@@ -138,20 +170,9 @@ const detectHit = () => {
 
 
 
-let stop = () => {clearInterval(gameInterval)}
+// let stop = () => {clearInterval(gameInterval)}
 
 document.addEventListener('keydown', movementHandler)
 
 let gameInterval = setInterval(gameLoop, 70)
 
-//collision detection btwn cart and fruits.
-// function collisionDetection() {
-
-// }
-// const detectHit = (thing) => {
-//     if (cart.x < thing.x + thing.width &&
-//         cart.x + cart.width > thing.x &&
-//         cart.y < thing.y + thing.height &&
-//         cart.y + thing.height > thing.y
-// )}
- 
