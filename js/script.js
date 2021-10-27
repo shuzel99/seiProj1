@@ -30,17 +30,11 @@ class Shopping{
             ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.width, this.height)
         }
-        // else{
-        //     console.log("maybe nothing")
-        // }
-        
+         return
     }
-//     remove = function(){
-//         ctx.clearRect(0, 0, this.width, this.height)
-//         console.log("remove called!!")
-//     }
+   
 }
-
+  
 class Player{
     constructor(x, y, color, width, height){
         this.x = x
@@ -68,10 +62,6 @@ let coconut = new Shopping(220, 1, 'brown', 20, 20)
 let lemon = new Shopping(260, 1, 'yellow', 20, 20)
 
 fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon]
-
-
-
-
 
 
 // cart.render()
@@ -102,7 +92,7 @@ const movementHandler = (e) => {
         case (40):
             cart.y += 10
             if (cart.y + cart.height >= game.height){
-                cart.y = game.height - cart.height
+                cart.y = game.height - cart.height //confines movement to canvas boundaries
             }
             break
         // moves cart right
@@ -141,12 +131,15 @@ const detectHit = () => {
         cart.y + cart.height >= fruitCollection[i].y
     ){
         fruitCollection[i].alive = false
-        // apple.remove()
-        console.log("Collision Detected")
+        fruitCollection.splice(i, 1) //removes items that have been collided with from canvas
+
+        // console.log("Collision Detected")
     }
 }
 
+
 //set up points system
+
 //interpolate points into html via points variable in js
 //grab random fruitCollection item
 //check function 
