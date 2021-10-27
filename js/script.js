@@ -18,8 +18,8 @@ const ctx = game.getContext('2d')
 
 class Shopping{
     constructor(x, y, color, width, height){
-        this.x = x
-        this.y = y
+        this.x = x = Math.floor(Math.random() * game.width)
+        this.y = y = Math.floor(Math.random() * game.height)
         this.color = color
         this.height = height
         this.width = width
@@ -132,8 +132,7 @@ const detectHit = () => {
     ){
         fruitCollection[i].alive = false
         fruitCollection.splice(i, 1) //removes items that have been collided with from canvas
-
-        // console.log("Collision Detected")
+        console.log("Collision Detected")
     }
 }
 
