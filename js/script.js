@@ -17,23 +17,27 @@ const ctx = game.getContext('2d')
 // canvas.height = window.innerHeight
 
 class Shopping{
-    constructor(x, y, color, width, height){
-        this.x = x = Math.floor(Math.random() * game.width)
-        this.y = y = Math.floor(Math.random() * game.height)
+    constructor(x, y, name, color, width, height){
+        this.x = x //= Math.floor(Math.random() * game.width) generates random starting position
+        this.y = y //= Math.floor(Math.random() * game.height)
+        this.name = name
         this.color = color
         this.height = height
         this.width = width
         this.alive = true
+        // this.speed = speed = Math.random() * (0.30 - 0.18) + 0.18
+        // this.direction = direction = Math.random() < 0.5 ? -1 : 1
     }
     render = function(){
         if (this.alive === true){
             ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y, this.width, this.height)
+        ctx.fillRect(this.x, this.y+=.5, this.width, this.height)//, this.speed, this.direction)
         }
          return
     }
    
 }
+
   
 class Player{
     constructor(x, y, color, width, height){
@@ -54,15 +58,25 @@ class Player{
 
 //create parts on canvas then render them
 let cart = new Player(115, 100, 'lightgrey', 70, 40)
-let apple = new Shopping(20, 1, 'red', 20, 20)
-let watermelon = new Shopping(60, 1, 'green', 40, 20)
-let orange = new Shopping(120, 1, 'orange', 20, 20)
-let eggplant = new Shopping(160, 1, 'purple', 40, 20)
-let coconut = new Shopping(220, 1, 'brown', 20, 20)
-let lemon = new Shopping(260, 1, 'yellow', 20, 20)
+let apple = new Shopping(20, 1, 'Apple', 'red', 20, 20)
+let watermelon = new Shopping(60, 1, 'Watermelon', 'green', 40, 20)
+let orange = new Shopping(120, 1, 'Orange', 'orange', 20, 20)
+let eggplant = new Shopping(160, 1, 'Eggplant', 'purple', 40, 20)
+let coconut = new Shopping(220, 1, 'Coconut', 'brown', 20, 20)
+let lemon = new Shopping(260, 1,'Lemon', 'yellow', 20, 20)
 
 fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon]
 
+let currentItemIndex = Math.floor(Math.random()*fruitCollection.length)
+currentItem.innerText = fruitCollection[currentItemIndex].name 
+
+// function moveFruit(){
+//     for(let i = 0; i < fruitCollection.length; i++){
+//         ctx.fillStyle = this.color
+//         ctx.fillRect(fruitCollection[i].x, fruitCollection[i].y+=.5, fruitCollection[i].w, fruitCollection[i].h)
+//     }
+// }
+// moveFruit()
 
 // cart.render()
 // apple.render()
@@ -121,8 +135,11 @@ const gameLoop = () => {
     }
    
 }
+
+let score = 30 
 const detectHit = () => {
     for (let i = 0; i < fruitCollection.length; i++)
+  
     // console.log(fruitCollection[i])
     if  (
         cart.x < fruitCollection[i].x + fruitCollection[i].width &&
@@ -131,35 +148,28 @@ const detectHit = () => {
         cart.y + cart.height >= fruitCollection[i].y
     ){
         fruitCollection[i].alive = false
+        pointsUpdate.innerText =  `${score+=10}`
         fruitCollection.splice(i, 1) //removes items that have been collided with from canvas
         console.log("Collision Detected")
-    }
+        console.log(score)
+    } 
+    if (fruitCollection[i] === currentItemIndex) {
+    console.log("thats a match") 
+ }
 }
 
+ 
+     
+ 
 
+
+
+//generate RANDOM fruit movement
 //set up points system
 
 //interpolate points into html via points variable in js
 //grab random fruitCollection item
 //check function 
-
-// const detectHit = () => {
-//     if (
-//         cart.x < apple.x + apple.width &&
-//         cart.x + cart.width > apple.x && 
-//         cart.y < apple.y + apple.height &&
-//         cart.y + cart.height >= apple.y
-//     ){
-//         apple.alive = false
-//         // apple.remove()
-//         console.log("Collision Detected")
-//     }
-// } 
-//create array of fruits
-//iterate over fruits in detect hit
-
-
-
 
 
 // let stop = () => {clearInterval(gameInterval)}
