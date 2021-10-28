@@ -69,22 +69,9 @@ fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon]
 
 let currentItemIndex = Math.floor(Math.random()*fruitCollection.length)
 currentItem.innerText = fruitCollection[currentItemIndex].name 
+ console.log(currentItemIndex)
 
-// function moveFruit(){
-//     for(let i = 0; i < fruitCollection.length; i++){
-//         ctx.fillStyle = this.color
-//         ctx.fillRect(fruitCollection[i].x, fruitCollection[i].y+=.5, fruitCollection[i].w, fruitCollection[i].h)
-//     }
-// }
-// moveFruit()
 
-// cart.render()
-// apple.render()
-// watermelon.render()
-// orange.render()
-// eggplant.render()
-// coconut.render()
-// lemon.render()
 
 const movementHandler = (e) => {
     switch (e.keyCode) { 
@@ -131,12 +118,11 @@ const gameLoop = () => {
         eggplant.render()
         coconut.render()
         lemon.render()
-
     }
    
 }
 
-let score = 30 
+let score = 0
 const detectHit = () => {
     for (let i = 0; i < fruitCollection.length; i++)
   
@@ -146,20 +132,23 @@ const detectHit = () => {
         cart.x + cart.width > fruitCollection[i].x && 
         cart.y < fruitCollection[i].y + fruitCollection[i].height &&
         cart.y + cart.height >= fruitCollection[i].y
-    ){
+    )
+    {
         fruitCollection[i].alive = false
-        pointsUpdate.innerText =  `${score+=10}`
-        fruitCollection.splice(i, 1) //removes items that have been collided with from canvas
-        console.log("Collision Detected")
-        console.log(score)
-    } 
-    if (fruitCollection[i] === currentItemIndex) {
-    console.log("thats a match") 
+        let target = fruitCollection[currentItemIndex]
+        let capture = fruitCollection.splice(i, 1, i) //removes items that have been collided with from canvas
+        console.log("collision detected")
+        console.log(capture)
+      if(target === capture[0]){
+            pointsUpdate.innerText =  `${score+=10}`
+      } else if(target === capture[1]) {
+            pointsUpdate.innerText =  `${score+=5}`
+      } else if (target !== capture) {
+             pointsUpdate.innerText =  `${score-=5}`
+      }
  }
 }
 
- 
-     
  
 
 
