@@ -2,6 +2,7 @@ const game = document.getElementById('canvas')
 
 //movement tracker allows items to move
 const moveDisplay = document.getElementById('movement')
+const message = document.getElementById('winnerOrLoser')
 
 
 function startGame(){
@@ -75,7 +76,7 @@ let banana = new Shopping(270, 1,'Banana', '#FFE135', 10, 25)
 
 fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon, blueberry, celery, peach, banana]
 
-let currentItemIndex = Math.floor(Math.random()*fruitCollection.length)
+let currentItemIndex = Math.floor(Math.random()*fruitCollection.length)//generates random fruit 
 currentItem.innerText = fruitCollection[currentItemIndex].name 
 //  console.log(currentItemIndex)
 
@@ -153,29 +154,15 @@ const detectHit = () => {
         // console.log(capture)
       if(target === capture[0]){
             pointsUpdate.innerText =  ` ${score+=10}`
+            message.innerText = "Good Job Shopper!"
       } else if(target === capture[1]) {
             pointsUpdate.innerText =  ` ${score+=5}`
       } else if (target !== capture) {
              pointsUpdate.innerText =  ` ${score-=5}`
+             message.innerText = "You're Unemployed :("
       }
  }
 }
-
-    // }else{
-//     console.log("whats going on")
-// }
-// console.log(level)
-
-
-//generate RANDOM fruit movement
-//set up points system
-
-//interpolate points into html via points variable in js
-//grab random fruitCollection item
-//check function 
-
-
-// let stop = () => {clearInterval(gameInterval)}
 
 document.addEventListener('keydown', movementHandler)
 
