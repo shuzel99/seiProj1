@@ -29,3 +29,6 @@ Have groceries be brand specific
 
 ## Potential Roadblocks 
 Every aspect is a potential road block I have zero clue how I'm going to do this at all :).
+
+## Live Link
+https://shuzel99.github.io/seiProj1/
