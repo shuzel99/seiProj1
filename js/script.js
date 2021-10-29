@@ -31,14 +31,17 @@ class Shopping{
     render = function(){
         if (this.alive === true){
             ctx.fillStyle = this.color
-        ctx.fillRect(this.x, this.y+=.5, this.width, this.height)//, this.speed, this.direction)
+        ctx.fillRect(this.x, this.y+=1, this.width, this.height)//, this.speed, this.direction)
         }
          return
     }
    
 }
-
-  
+// shoppingCart = new Image();
+// shoppingCart.onload = function(){
+//     ctx.drawImage(shoppingCart, 135, 120, shoppingCart.width*.03, shoppingCart.height*.03)
+// }
+//   shoppingCart.src = 'https://i.postimg.cc/qRhzST6H/cartttt.png'
 class Player{
     constructor(x, y, color, width, height){
         this.x = x
@@ -57,19 +60,24 @@ class Player{
 }
 
 //create parts on canvas then render them
-let cart = new Player(115, 100, 'lightgrey', 70, 40)
-let apple = new Shopping(20, 1, 'Apple', 'red', 20, 20)
-let watermelon = new Shopping(60, 1, 'Watermelon', 'green', 40, 20)
-let orange = new Shopping(120, 1, 'Orange', 'orange', 20, 20)
-let eggplant = new Shopping(160, 1, 'Eggplant', 'purple', 40, 20)
-let coconut = new Shopping(220, 1, 'Coconut', 'brown', 20, 20)
-let lemon = new Shopping(260, 1,'Lemon', 'yellow', 20, 20)
+let cart = new Player(130, 130, 'lightgrey', 30, 20)
+let apple = new Shopping(5, 1, 'Apple', 'red', 16, 16)
+let watermelon = new Shopping(30, 1, 'Watermelon', 'green', 35, 25)
+let orange = new Shopping(70, 1, 'Orange', '#ff5f00', 16, 16)
+let eggplant = new Shopping(100, 1, 'Eggplant', 'purple', 30, 15)
+let coconut = new Shopping(140, 1, 'Coconut', 'brown', 15, 15)
+let lemon = new Shopping(170, 1,'Lemon', 'yellow', 16, 16)
+let blueberry = new Shopping(200, 1,'Blueberry', '#5954a1', 10, 10)
+let celery = new Shopping(220, 1,'Celery', '#9DCE5C', 10, 30)
+let peach = new Shopping(240, 1,'Peach', '#FFC696', 16, 16)
+let banana = new Shopping(270, 1,'Banana', '#FFE135', 10, 25)
 
-fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon]
+
+fruitCollection = [apple, watermelon, orange, eggplant, coconut, lemon, blueberry, celery, peach, banana]
 
 let currentItemIndex = Math.floor(Math.random()*fruitCollection.length)
 currentItem.innerText = fruitCollection[currentItemIndex].name 
- console.log(currentItemIndex)
+//  console.log(currentItemIndex)
 
 
 
@@ -118,8 +126,12 @@ const gameLoop = () => {
         eggplant.render()
         coconut.render()
         lemon.render()
+        blueberry.render()
+        celery.render()
+        peach.render()
+        banana.render()
     }
-   
+  
 }
 
 let score = 0
@@ -137,20 +149,22 @@ const detectHit = () => {
         fruitCollection[i].alive = false
         let target = fruitCollection[currentItemIndex]
         let capture = fruitCollection.splice(i, 1, i) //removes items that have been collided with from canvas
-        console.log("collision detected")
-        console.log(capture)
+        // console.log("collision detected")
+        // console.log(capture)
       if(target === capture[0]){
-            pointsUpdate.innerText =  `${score+=10}`
+            pointsUpdate.innerText =  ` ${score+=10}`
       } else if(target === capture[1]) {
-            pointsUpdate.innerText =  `${score+=5}`
+            pointsUpdate.innerText =  ` ${score+=5}`
       } else if (target !== capture) {
-             pointsUpdate.innerText =  `${score-=5}`
+             pointsUpdate.innerText =  ` ${score-=5}`
       }
  }
 }
 
- 
-
+    // }else{
+//     console.log("whats going on")
+// }
+// console.log(level)
 
 
 //generate RANDOM fruit movement
