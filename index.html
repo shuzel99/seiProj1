@@ -9,6 +9,16 @@
     <title>Greatest Shopper</title>
 </head>
 <body>
+    <div  id="startScreen">
+        <h1>Greatest Shopper</h1>
+        <h2>Intructions</h2>
+        <ul>
+            <li>Gather the grocery items to keep your job!</li>
+            <li> Maneuver the cart to catch the appropriate grocery items</li>
+            <li> Putting the wrong item in the cart might cost you your job</li>
+        </ul>
+        <button onclick="playGame" id="startButton">START !</button>
+    </div>
     <div id="container">
         <aside id= "topLeft"><h2>Current Item: <span id="currentItem"></span> </h2></aside>
         <aside id = "topRight"><h2>Points:<span id="pointsUpdate"></span></h2></aside>
@@ -18,8 +28,8 @@
             <canvas id="canvas">
                  <!-- <img src="https://i.postimg.cc/c4NNTLNd/supermarket-4.jpg"> -->
             </canvas>
+            <button id="restartButton">Restart</button>
            
-        
         </main> 
     </div>
     <script src="js/script.js"></script>

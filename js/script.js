@@ -4,10 +4,11 @@ const game = document.getElementById('canvas')
 const moveDisplay = document.getElementById('movement')
 const message = document.getElementById('winnerOrLoser')
 
-
-function startGame(){
-    game.start()
+const playGame = () => {
+    startScreen.style.display = "none"
 }
+startButton.addEventListener("click", playGame)
+
 
 // game.setAttribute('width', getComputedStyle(game)['width'])
 // game.setAttribute('height', getComputedStyle(game)['height'])
@@ -167,4 +168,6 @@ const detectHit = () => {
 document.addEventListener('keydown', movementHandler)
 
 let gameInterval = setInterval(gameLoop, 70)
+
+
 
