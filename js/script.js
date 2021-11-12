@@ -180,12 +180,13 @@ const detectHit = () => {
 }
 
 document.addEventListener('keydown', movementHandler)
-}
-gameReload()
+
+
 
 const gameInterval = setInterval(gameLoop, 70)
 gameLoop()
-
+}
+gameReload()
 restartButton.addEventListener("click", gameReload)
 }
 
