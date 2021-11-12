@@ -6,12 +6,11 @@ const playGame = () => {
 
 startButton.addEventListener("click", playGame)
 
-
+// restartButton.addEventListener("click", location.reload())
 
 
 let playGameNow = () => {
     
-restartButton.addEventListener("click", playGameNow)
 
 const game = document.getElementById('canvas')
 
@@ -22,13 +21,6 @@ const message = document.getElementById('winnerOrLoser')
 const ctx = game.getContext('2d')
 
 
-
-
-
-
-
-
-
 // game.setAttribute('width', getComputedStyle(game)['width'])
 // game.setAttribute('height', getComputedStyle(game)['height'])
 
@@ -36,6 +28,7 @@ const ctx = game.getContext('2d')
 
 // canvas.width = window.innerWidth
 // canvas.height = window.innerHeight
+let gameReload = () => {
 
 class Shopping{
     constructor(x, y, name, color, width, height){
@@ -188,9 +181,14 @@ const detectHit = () => {
 
 document.addEventListener('keydown', movementHandler)
 
-const gameInterval = setInterval(gameLoop, 70)
+}
+gameReload()
 
+const gameInterval = setInterval(gameLoop, 70)
 gameLoop()
 
+restartButton.addEventListener("click", gameReload)
 }
+
+
 
