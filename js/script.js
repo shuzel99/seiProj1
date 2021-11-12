@@ -28,8 +28,8 @@ const ctx = game.getContext('2d')
 
 // canvas.width = window.innerWidth
 // canvas.height = window.innerHeight
-let gameReload = () => {
 
+let gameReload = () => {
 class Shopping{
     constructor(x, y, name, color, width, height){
         this.x = x //= Math.floor(Math.random() * game.width) generates random starting position
@@ -94,7 +94,6 @@ currentItem.innerText = fruitCollection[currentItemIndex].name
 //  console.log(currentItemIndex)
 
 
-
 const movementHandler = (e) => {
     switch (e.keyCode) { 
         //keycode 38 is the up arrow moves cart up
@@ -148,6 +147,7 @@ const movementHandler = (e) => {
 }
 
 
+
 let score = 0
 const detectHit = () => {
     for (let i = 0; i < fruitCollection.length; i++)
@@ -180,7 +180,6 @@ const detectHit = () => {
 }
 
 document.addEventListener('keydown', movementHandler)
-
 }
 gameReload()
 
