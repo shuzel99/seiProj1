@@ -70,3 +70,6 @@ canvas {
     height: 50px;
     margin-top: 10px;
 }
+#winnerOrLoser{
+    font-size: 30pt;
+}

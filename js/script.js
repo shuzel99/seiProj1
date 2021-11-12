@@ -1,20 +1,39 @@
+
+const playGame = () => {
+    startScreen.style.display = "none"
+    playGameNow()
+}
+
+startButton.addEventListener("click", playGame)
+
+
+
+
+let playGameNow = () => {
+    
+restartButton.addEventListener("click", playGameNow)
+
 const game = document.getElementById('canvas')
 
 //movement tracker allows items to move
 const moveDisplay = document.getElementById('movement')
 const message = document.getElementById('winnerOrLoser')
 
-const playGame = () => {
-    startScreen.style.display = "none"
-}
-startButton.addEventListener("click", playGame)
+const ctx = game.getContext('2d')
+
+
+
+
+
+
+
 
 
 // game.setAttribute('width', getComputedStyle(game)['width'])
 // game.setAttribute('height', getComputedStyle(game)['height'])
 
 // // 2d context allows drawing on top of canvas
-const ctx = game.getContext('2d')
+
 // canvas.width = window.innerWidth
 // canvas.height = window.innerHeight
 
@@ -118,7 +137,7 @@ const movementHandler = (e) => {
 
 }
 
-const gameLoop = () => {
+ gameLoop = () => {
     ctx.clearRect(0, 0, game.width, game.height)
     if (cart.alive) {
         cart.render()
@@ -133,8 +152,8 @@ const gameLoop = () => {
         peach.render()
         banana.render()
     }
-  
 }
+
 
 let score = 0
 const detectHit = () => {
@@ -156,18 +175,22 @@ const detectHit = () => {
       if(target === capture[0]){
             pointsUpdate.innerText =  ` ${score+=10}`
             message.innerText = "Good Job Shopper!"
+            clearInterval(gameInterval)
       } else if(target === capture[1]) {
             pointsUpdate.innerText =  ` ${score+=5}`
       } else if (target !== capture) {
              pointsUpdate.innerText =  ` ${score-=5}`
              message.innerText = "You're Unemployed :("
+             clearInterval(gameInterval)
       }
  }
 }
 
 document.addEventListener('keydown', movementHandler)
 
-let gameInterval = setInterval(gameLoop, 70)
+const gameInterval = setInterval(gameLoop, 70)
 
+gameLoop()
 
+}
 
